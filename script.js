@@ -12,6 +12,7 @@ console.log(totalSum)
 
 //Task 2
 let obj1 = {
+	n: null,
 	num: 123,
 	str: 'privet',
 	innerObj: {
