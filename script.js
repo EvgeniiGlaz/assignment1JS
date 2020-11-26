@@ -26,6 +26,10 @@ let obj1 = {
 function newObject(obj) {
 	b = {}
 	for (let key in obj) {
+		if (obj[key] === null) {
+			b[key] = null;
+			continue;
+		}
 		if (typeof obj[key] == 'object') {
 			try {
 				b[key] = [...obj[key]]
