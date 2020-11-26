@@ -14,46 +14,73 @@ function sum(num) {
 console.log(sum(2)(3))
 
 //Task 2
-let obj1 = {
-	n: null,
-	num: 123,
-	str: 'privet',
-	innerObj: {
-		objNum: 123
+const actionSample = {
+	type: 'DISPATCH_STATUS',
+	payload: {
+		id: 463901,
+		status: 'pending',
+		startTime: 1576115477,
+		startAt: 1576115477,
+		counters: {
+			total: {
+				sent: 2328,
+				delivered: 2034,
+				read: 0,
+				undelivered: 0,
+				timeout: 0,
+				progress: 294,
+				other: 0,
+				total: 2328,
+				amount: 4781.7,
+			},
+			sms: {
+				sent: 2328,
+				delivered: 2034,
+				read: 0,
+				undelivered: 0,
+				timeout: 0,
+				progress: 294,
+				other: 0,
+				total: 2328,
+				amount: 4781.7,
+			},
+		},
 	},
-	innerArr: ['a', 'b'],
-	sayHi() {
-		console.log('hello')
-	}
-}
+};
 
 function newObject(obj) {
-	b = {}
+	let newObj = {}
 	for (let key in obj) {
 		if (obj[key] === null) {
-			b[key] = null;
+			newObj[key] = null;
 			continue;
 		}
+
 		if (typeof obj[key] == 'object') {
 			try {
-				b[key] = [...obj[key]]
+				newObj[key] = [...obj[key]]
 			} catch (err) {
-				b[key] = { ...obj[key] }
+				newObj[key] = { ...obj[key] }
+			}
+
+			for (let innerKey in obj[key]) {
+				if (typeof obj[key][innerKey] == 'object') {
+					newObj[key][innerKey] = newObject(obj[key][innerKey]);
+				}
 			}
 		} else {
-			b[key] = obj[key]
+			newObj[key] = obj[key]
 		}
 	}
-	//b.num = 321; //ПРОВЕРКИ ДЛЯ РАЗНЫХ ТИПОВ ДАННЫХ
-	//b.str = 'tevirp';
-	//b.innerObj.objNum = 4321;
-	//b.innerArr[0] = 'f';
-	//b.innerArr[1] = 'z';
-	//b.sayHi = function (a) {
-	//console.log(a)
-	//}
-	return b;
+	return newObj;
 }
-console.log('Old object: ', obj1)
-console.log('New object: ', newObject(obj1))
+
+let newObj = newObject(actionSample);
+newObj.type = 'test_value'; //Тест примитива
+newObj.payload.status = 'testing'; //Тест первой вложенности
+newObj.payload.counters.sms = {}; //Тест третьей вложенности
+
+
+console.log('Old object: ', actionSample)
+console.log('New object: ', newObj)
 
