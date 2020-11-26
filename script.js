@@ -76,9 +76,9 @@ function newObject(obj) {
 }
 
 let newObj = newObject(actionSample);
-newObj.type = 'test_value'; //Тест примитива
-newObj.payload.status = 'testing'; //Тест первой вложенности
-newObj.payload.counters.sms = {}; //Тест третьей вложенности
+// newObj.type = 'test_value'; //Тест примитива
+// newObj.payload.status = 'testing'; //Тест первой вложенности
+// newObj.payload.counters.sms.sent = 'Object link is finally broken!'; //Тест третьей вложенности
 
 
 console.log('Old object: ', actionSample)
