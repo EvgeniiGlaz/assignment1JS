@@ -3,10 +3,14 @@ var totalSum = 0;
 
 function sum(num) {
 	totalSum += num;
-	return sum;
-}
 
-sum(5)(3)
+	function secondSum(num1) {
+		totalSum += num1;
+		return totalSum;
+	}
+
+	return secondSum;
+}
 
 console.log(totalSum)
 
