@@ -1,7 +1,6 @@
 //Task 1
-var totalSum = 0;
-
 function sum(num) {
+	let totalSum = 0;
 	totalSum += num;
 
 	function secondSum(num1) {
@@ -12,7 +11,7 @@ function sum(num) {
 	return secondSum;
 }
 
-console.log(totalSum)
+console.log(sum(2)(3))
 
 //Task 2
 let obj1 = {
