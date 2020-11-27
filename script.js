@@ -57,9 +57,9 @@ function newObject(obj) {
 		}
 
 		if (typeof obj[key] == 'object') {
-			try {
+			if (Array.isArray(obj[key])) {
 				newObj[key] = [...obj[key]]
-			} catch (err) {
+			} else {
 				newObj[key] = { ...obj[key] }
 			}
 
@@ -83,4 +83,5 @@ let newObj = newObject(actionSample);
 
 console.log('Old object: ', actionSample)
 console.log('New object: ', newObj)
+
 
